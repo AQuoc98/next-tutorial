@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
       <h1>The Home Page</h1>
@@ -10,6 +9,9 @@ export default function Home() {
         </li>
         <li>
           <Link href="/clients">Clients</Link>
+        </li>
+        <li>
+          <Link href="/products">Products</Link>
         </li>
       </ul>
     </div>
