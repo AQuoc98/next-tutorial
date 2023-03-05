@@ -110,3 +110,7 @@ a {
   text-align: center;
   margin: 1rem auto;
 }
+
+li {
+  list-style-type: none;
+}
