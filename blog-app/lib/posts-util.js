@@ -4,12 +4,16 @@ import path from "path";
 
 const postDirectory = path.join(process.cwd(), "posts");
 
-export const getPostData = (fileName) => {
-  const filePath = path.join(postDirectory, fileName);
+export const getPostsFiles = () => {
+  return fs.readdirSync(postDirectory);
+};
+
+export const getPostData = (postIdentifier) => {
+  const postSlug = postIdentifier.replace(/\.md$/, ""); // removes the file extension
+
+  const filePath = path.join(postDirectory, `${postSlug}.md`);
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-
-  const postSlug = fileName.replace(/\.md$/, ""); // removes the file extension
 
   const postData = {
     slug: postSlug,
@@ -21,7 +25,7 @@ export const getPostData = (fileName) => {
 };
 
 export const getAllPosts = () => {
-  const postFiles = fs.readdirSync(postDirectory);
+  const postFiles = getPostsFiles();
 
   const allPosts = postFiles.map((postFile) => {
     return getPostData(postFile);
